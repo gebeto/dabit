@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct DebtsView: View {
+struct DebtsListView: View {
     @State var data = Array(1...3).map{ DebtItem(title: "Item \($0)", avatar: "placeholder-default", amount: 100) }
     
     let layout = [
@@ -22,7 +22,7 @@ struct DebtsView: View {
     var body: some View {
         NavigationView {
             List(data, id: \.self.title) { item in
-                DebtItemView(debt: item)
+                DebtsListItemView(debt: item)
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Debts")
@@ -57,6 +57,6 @@ struct DebtsView: View {
 
 struct DebtsView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtsView()
+        DebtsListView()
     }
 }

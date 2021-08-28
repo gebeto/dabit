@@ -12,11 +12,11 @@
 		ADFF2A6D26DA7F6F0034B989 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A6C26DA7F6F0034B989 /* ContentView.swift */; };
 		ADFF2A6F26DA7F700034B989 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFF2A6E26DA7F700034B989 /* Assets.xcassets */; };
 		ADFF2A7226DA7F700034B989 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFF2A7126DA7F700034B989 /* Preview Assets.xcassets */; };
-		ADFF2A7A26DA83120034B989 /* DebtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7926DA83120034B989 /* DebtsView.swift */; };
+		ADFF2A7A26DA83120034B989 /* DebtsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7926DA83120034B989 /* DebtsListView.swift */; };
 		ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7B26DA83440034B989 /* SettingsView.swift */; };
 		ADFF2A7E26DA9C240034B989 /* DebtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */; };
 		ADFF2A8026DAA0DA0034B989 /* DebtItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7F26DAA0DA0034B989 /* DebtItem.swift */; };
-		ADFF2A8226DAA4FB0034B989 /* DebtItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A8126DAA4FB0034B989 /* DebtItemView.swift */; };
+		ADFF2A8226DAA4FB0034B989 /* DebtsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A8126DAA4FB0034B989 /* DebtsListItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +27,11 @@
 		ADFF2A6E26DA7F700034B989 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADFF2A7126DA7F700034B989 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ADFF2A7326DA7F700034B989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADFF2A7926DA83120034B989 /* DebtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsView.swift; sourceTree = "<group>"; };
+		ADFF2A7926DA83120034B989 /* DebtsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsListView.swift; sourceTree = "<group>"; };
 		ADFF2A7B26DA83440034B989 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailView.swift; sourceTree = "<group>"; };
 		ADFF2A7F26DAA0DA0034B989 /* DebtItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtItem.swift; sourceTree = "<group>"; };
-		ADFF2A8126DAA4FB0034B989 /* DebtItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtItemView.swift; sourceTree = "<group>"; };
+		ADFF2A8126DAA4FB0034B989 /* DebtsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +45,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD5AB6D826DAC18100B4B138 /* Debt */ = {
+			isa = PBXGroup;
+			children = (
+				ADFF2A7F26DAA0DA0034B989 /* DebtItem.swift */,
+				ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */,
+				AD5AB6D926DAC19C00B4B138 /* DebtList */,
+			);
+			path = Debt;
+			sourceTree = "<group>";
+		};
+		AD5AB6D926DAC19C00B4B138 /* DebtList */ = {
+			isa = PBXGroup;
+			children = (
+				ADFF2A7926DA83120034B989 /* DebtsListView.swift */,
+				ADFF2A8126DAA4FB0034B989 /* DebtsListItemView.swift */,
+			);
+			path = DebtList;
+			sourceTree = "<group>";
+		};
+		AD5AB6DA26DAC20C00B4B138 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ADFF2A7B26DA83440034B989 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		AD5AB6DB26DAC21C00B4B138 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				ADFE6ADB26DABB6400635280 /* ChumbaView.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		ADFF2A5E26DA7F6F0034B989 = {
 			isa = PBXGroup;
 			children = (
@@ -64,17 +99,14 @@
 		ADFF2A6926DA7F6F0034B989 /* dabit */ = {
 			isa = PBXGroup;
 			children = (
+				AD5AB6DB26DAC21C00B4B138 /* components */,
+				AD5AB6DA26DAC20C00B4B138 /* Settings */,
+				AD5AB6D826DAC18100B4B138 /* Debt */,
 				ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */,
 				ADFF2A6C26DA7F6F0034B989 /* ContentView.swift */,
 				ADFF2A6E26DA7F700034B989 /* Assets.xcassets */,
 				ADFF2A7326DA7F700034B989 /* Info.plist */,
 				ADFF2A7026DA7F700034B989 /* Preview Content */,
-				ADFF2A7926DA83120034B989 /* DebtsView.swift */,
-				ADFF2A7B26DA83440034B989 /* SettingsView.swift */,
-				ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */,
-				ADFF2A7F26DAA0DA0034B989 /* DebtItem.swift */,
-				ADFF2A8126DAA4FB0034B989 /* DebtItemView.swift */,
-				ADFE6ADB26DABB6400635280 /* ChumbaView.swift */,
 			);
 			path = dabit;
 			sourceTree = "<group>";
@@ -160,8 +192,8 @@
 				ADFF2A7E26DA9C240034B989 /* DebtDetailView.swift in Sources */,
 				ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */,
 				ADFF2A8026DAA0DA0034B989 /* DebtItem.swift in Sources */,
-				ADFF2A8226DAA4FB0034B989 /* DebtItemView.swift in Sources */,
-				ADFF2A7A26DA83120034B989 /* DebtsView.swift in Sources */,
+				ADFF2A8226DAA4FB0034B989 /* DebtsListItemView.swift in Sources */,
+				ADFF2A7A26DA83120034B989 /* DebtsListView.swift in Sources */,
 				ADFE6ADC26DABB6400635280 /* ChumbaView.swift in Sources */,
 				ADFF2A6B26DA7F6F0034B989 /* dabitApp.swift in Sources */,
 			);

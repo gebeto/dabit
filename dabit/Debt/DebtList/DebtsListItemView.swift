@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct DebtItemView: View {
+struct DebtsListItemView: View {
     let debt: DebtItem;
     
     @State var opened = false;
@@ -41,7 +41,7 @@ struct DebtItemView: View {
 
 struct DebtItemView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtItemView(
+        DebtsListItemView(
             debt: DebtItem(title: "Test Debt", avatar: "placeholder1", amount: 1000)
         )
             .previewLayout(.sizeThatFits)
