@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct DebtDetailView: View {
+    @Environment(\.managedObjectContext) var context;
     let debt: CDDebt;
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 HStack(alignment: .center) {
-                    Image(debt.avatar!)
+                    Image(debt.avatar == nil ? "placeholder-default" : debt.avatar!)
                         .resizable()
                         .frame(width: 80, height: 80)
                         .cornerRadius(40)
                     
                     VStack(alignment: .leading) {
-                        Text(debt.title!)
+                        Text(debt.title == nil ? "Unknown" : debt.title!)
                             .font(.title)
                             .fontWeight(.bold)
                         
@@ -38,7 +39,8 @@ struct DebtDetailView: View {
                 
                 VStack {
                     Button(action: {
-                        print("Close debt")
+                        self.context.delete(debt)
+                        try? self.context.save();
                     }, label: {
                         Spacer()
                         Label("Close debt", systemImage: "trash.circle.fill")

@@ -10,7 +10,7 @@ import CoreData
 
 
 struct DebtsListView: View {
-    @Environment(\.managedObjectContext) var moc;
+    @Environment(\.managedObjectContext) var context;
     @FetchRequest(entity: CDDebt.entity(), sortDescriptors: []) var debts: FetchedResults<CDDebt>
     
     let layout = [
@@ -18,12 +18,12 @@ struct DebtsListView: View {
     ]
     
     func addItem(title: String, amount: Int32, avatar: String) {
-        let debt = CDDebt(context: moc);
+        let debt = CDDebt(context: context);
         debt.id = UUID();
         debt.amount = amount;
         debt.avatar = avatar;
         debt.title = title;
-        try? moc.save();
+        try? context.save();
     }
     
     var body: some View {
@@ -36,7 +36,6 @@ struct DebtsListView: View {
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
-                        print("Add")
                         withAnimation(.spring()) {
                             addItem(title: "Hello", amount: 1000, avatar: "placeholder3")
                         }

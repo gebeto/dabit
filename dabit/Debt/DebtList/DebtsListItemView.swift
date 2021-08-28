@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct DebtsListItemView: View {
+    @Environment(\.managedObjectContext) var context;
     let debt: CDDebt;
     
     @State var opened = false;
