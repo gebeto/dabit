@@ -41,6 +41,9 @@ struct DebtItemView: View {
 
 struct DebtItemView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtItemView(debt: DebtItem(title: "Test Debt", avatar: "placeholder1", amount: 1000))
+        DebtItemView(
+            debt: DebtItem(title: "Test Debt", avatar: "placeholder1", amount: 1000)
+        )
+            .previewLayout(.sizeThatFits)
     }
 }
