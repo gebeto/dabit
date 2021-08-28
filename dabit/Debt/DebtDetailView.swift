@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct DebtDetailView: View {
-    let debt: DebtItem;
+    let debt: CDDebt;
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 HStack(alignment: .center) {
-                    Image(debt.avatar)
+                    Image(debt.avatar!)
                         .resizable()
                         .frame(width: 80, height: 80)
                         .cornerRadius(40)
                     
                     VStack(alignment: .leading) {
-                        Text(debt.title)
+                        Text(debt.title!)
                             .font(.title)
                             .fontWeight(.bold)
                         
@@ -58,7 +58,16 @@ struct DebtDetailView: View {
 }
 
 struct DebtView_Previews: PreviewProvider {
+    static var debt: CDDebt = {
+        let debt = CDDebt()
+        debt.id = UUID();
+        debt.amount = 1000;
+        debt.title = "Slavik Nychkalo";
+        debt.avatar = "placeholder1";
+        return debt;
+    }()
+    
     static var previews: some View {
-        DebtDetailView(debt: DebtItem(title: "Slavik Nychkalo", avatar: "placeholder2", amount: 1000))
+        DebtDetailView(debt: debt)
     }
 }

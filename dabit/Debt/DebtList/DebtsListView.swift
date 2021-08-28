@@ -17,19 +17,19 @@ struct DebtsListView: View {
         GridItem(.flexible())
     ]
     
-    func addItem(item: DebtItem) {
+    func addItem(title: String, amount: Int32, avatar: String) {
         let debt = CDDebt(context: moc);
         debt.id = UUID();
-        debt.amount = 1000;
-        debt.avatar = item.avatar;
-        debt.title = item.title;
+        debt.amount = amount;
+        debt.avatar = avatar;
+        debt.title = title;
         try? moc.save();
     }
     
     var body: some View {
         NavigationView {
             List(debts, id: \.id) { item in
-                DebtsListItemView(debt: DebtItem.init(debt: item))
+                DebtsListItemView(debt: item)
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Debts")
@@ -38,7 +38,7 @@ struct DebtsListView: View {
                     Button(action: {
                         print("Add")
                         withAnimation(.spring()) {
-                            addItem(item: DebtItem.init(title: "Test", avatar: "placeholder2", amount: 1000))
+                            addItem(title: "Hello", amount: 1000, avatar: "placeholder3")
                         }
                     }, label: {
                         Image(systemName: "plus")

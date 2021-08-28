@@ -19,7 +19,6 @@
 		ADFF2A7A26DA83120034B989 /* DebtsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7926DA83120034B989 /* DebtsListView.swift */; };
 		ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7B26DA83440034B989 /* SettingsView.swift */; };
 		ADFF2A7E26DA9C240034B989 /* DebtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */; };
-		ADFF2A8026DAA0DA0034B989 /* DebtItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7F26DAA0DA0034B989 /* DebtItem.swift */; };
 		ADFF2A8226DAA4FB0034B989 /* DebtsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A8126DAA4FB0034B989 /* DebtsListItemView.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 		ADFF2A7926DA83120034B989 /* DebtsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsListView.swift; sourceTree = "<group>"; };
 		ADFF2A7B26DA83440034B989 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailView.swift; sourceTree = "<group>"; };
-		ADFF2A7F26DAA0DA0034B989 /* DebtItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtItem.swift; sourceTree = "<group>"; };
 		ADFF2A8126DAA4FB0034B989 /* DebtsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +54,6 @@
 		AD5AB6D826DAC18100B4B138 /* Debt */ = {
 			isa = PBXGroup;
 			children = (
-				ADFF2A7F26DAA0DA0034B989 /* DebtItem.swift */,
 				ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */,
 				AD5AB6D926DAC19C00B4B138 /* DebtList */,
 			);
@@ -204,7 +201,6 @@
 				AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */,
 				ADFF2A7E26DA9C240034B989 /* DebtDetailView.swift in Sources */,
 				ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */,
-				ADFF2A8026DAA0DA0034B989 /* DebtItem.swift in Sources */,
 				ADFF2A8226DAA4FB0034B989 /* DebtsListItemView.swift in Sources */,
 				ADFF2A7A26DA83120034B989 /* DebtsListView.swift in Sources */,
 				ADFE6ADC26DABB6400635280 /* ChumbaView.swift in Sources */,
