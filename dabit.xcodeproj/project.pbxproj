@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD422A0326DAD77300BA3331 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0226DAD77300BA3331 /* Persistence.swift */; };
+		AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD5AB6DF26DACF2A00B4B138 /* dabit.xcdatamodeld */; };
+		ADC04B2C26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC04B2A26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift */; };
+		ADC04B2D26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC04B2B26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift */; };
 		ADFE6ADC26DABB6400635280 /* ChumbaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFE6ADB26DABB6400635280 /* ChumbaView.swift */; };
 		ADFF2A6B26DA7F6F0034B989 /* dabitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */; };
 		ADFF2A6D26DA7F6F0034B989 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A6C26DA7F6F0034B989 /* ContentView.swift */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD422A0226DAD77300BA3331 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		AD5AB6E026DACF2A00B4B138 /* dabit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dabit.xcdatamodel; sourceTree = "<group>"; };
+		ADC04B2A26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDDebt+CoreDataClass.swift"; path = "dabit/CDDebt+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ADC04B2B26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDDebt+CoreDataProperties.swift"; path = "dabit/CDDebt+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ADFE6ADB26DABB6400635280 /* ChumbaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumbaView.swift; sourceTree = "<group>"; };
 		ADFF2A6726DA7F6F0034B989 /* dabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dabitApp.swift; sourceTree = "<group>"; };
@@ -83,6 +91,8 @@
 		ADFF2A5E26DA7F6F0034B989 = {
 			isa = PBXGroup;
 			children = (
+				ADC04B2A26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift */,
+				ADC04B2B26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift */,
 				ADFF2A6926DA7F6F0034B989 /* dabit */,
 				ADFF2A6826DA7F6F0034B989 /* Products */,
 			);
@@ -99,14 +109,16 @@
 		ADFF2A6926DA7F6F0034B989 /* dabit */ = {
 			isa = PBXGroup;
 			children = (
+				ADFF2A7026DA7F700034B989 /* Preview Content */,
 				AD5AB6DB26DAC21C00B4B138 /* components */,
 				AD5AB6DA26DAC20C00B4B138 /* Settings */,
 				AD5AB6D826DAC18100B4B138 /* Debt */,
+				ADFF2A6E26DA7F700034B989 /* Assets.xcassets */,
 				ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */,
 				ADFF2A6C26DA7F6F0034B989 /* ContentView.swift */,
-				ADFF2A6E26DA7F700034B989 /* Assets.xcassets */,
 				ADFF2A7326DA7F700034B989 /* Info.plist */,
-				ADFF2A7026DA7F700034B989 /* Preview Content */,
+				AD5AB6DF26DACF2A00B4B138 /* dabit.xcdatamodeld */,
+				AD422A0226DAD77300BA3331 /* Persistence.swift */,
 			);
 			path = dabit;
 			sourceTree = "<group>";
@@ -189,13 +201,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADFF2A6D26DA7F6F0034B989 /* ContentView.swift in Sources */,
+				AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */,
 				ADFF2A7E26DA9C240034B989 /* DebtDetailView.swift in Sources */,
 				ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */,
 				ADFF2A8026DAA0DA0034B989 /* DebtItem.swift in Sources */,
 				ADFF2A8226DAA4FB0034B989 /* DebtsListItemView.swift in Sources */,
 				ADFF2A7A26DA83120034B989 /* DebtsListView.swift in Sources */,
 				ADFE6ADC26DABB6400635280 /* ChumbaView.swift in Sources */,
+				ADC04B2D26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift in Sources */,
+				AD422A0326DAD77300BA3331 /* Persistence.swift in Sources */,
 				ADFF2A6B26DA7F6F0034B989 /* dabitApp.swift in Sources */,
+				ADC04B2C26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +400,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AD5AB6DF26DACF2A00B4B138 /* dabit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AD5AB6E026DACF2A00B4B138 /* dabit.xcdatamodel */,
+			);
+			currentVersion = AD5AB6E026DACF2A00B4B138 /* dabit.xcdatamodel */;
+			path = dabit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ADFF2A5F26DA7F6F0034B989 /* Project object */;
 }
