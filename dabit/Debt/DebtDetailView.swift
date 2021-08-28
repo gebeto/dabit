@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DebtDetailView: View {
     @Environment(\.managedObjectContext) var context;
+    @Environment(\.presentationMode) var presentationMode
     let debt: CDDebt;
     
     var body: some View {
@@ -39,7 +40,8 @@ struct DebtDetailView: View {
                 
                 VStack {
                     Button(action: {
-                        self.context.delete(debt)
+                        presentationMode.wrappedValue.dismiss();
+                        self.context.delete(debt);
                         try? self.context.save();
                     }, label: {
                         Spacer()
