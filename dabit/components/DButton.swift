@@ -17,16 +17,15 @@ struct DButton: View {
         Button(action: {
             print("Add more")
         }, label: {
-            Spacer()
             Label(title, systemImage: systemIcon)
-                .foregroundColor(.accentColor)
+                .foregroundColor(.white)
                 .font(.body.bold())
                 .imageScale(.large)
-            Spacer()
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
         })
-        .padding()
-        .background(Color(red: 0, green: 0, blue: 0, opacity: 0.04))
-        .cornerRadius(8)
+        .background(Color(.systemBlue))
+        .cornerRadius(12)
     }
 }
 

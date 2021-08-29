@@ -22,15 +22,35 @@ struct KeyboardButton: View {
             Spacer()
         })
         .font(.system(size: 21, weight: .bold, design: .rounded))
-        .background(Color(red: 0, green: 0, blue: 0, opacity: 0.04))
-        .foregroundColor(.black)
+        .background(Color.primary.opacity(0.04))
+        .foregroundColor(Color.primary.opacity(0.8))
         .cornerRadius(6)
+    }
+}
+
+struct CurrencyPicker: View {
+    static var currencies: [String] = ["Dollar", "Grivnya"]
+    @State var currency = "Dollar";
+    
+    var body: some View {
+        Text(currency)
+            .font(.system(size: 32, weight: .bold, design: .monospaced))
+            .padding(.vertical, 6)
+            .padding(.horizontal, 10)
+            .background(Color.primary.opacity(0.04))
+            .cornerRadius(6)
+            .contextMenu(ContextMenu(menuItems: {
+                ForEach(Self.currencies, id: \.self) { currency in
+                    Button(currency, action: {
+                        self.currency = currency;
+                    })
+                }
+            }))
     }
 }
 
 struct CreateAmountView: View {
     let onAdd: (Int) -> Void;
-    
     @State var valueArray: [Int] = [];
     
     func pushItem(item: Int) {
@@ -61,6 +81,8 @@ struct CreateAmountView: View {
             }
             
             Spacer()
+            
+            CurrencyPicker()
             
             VStack(spacing: 8) {
                 HStack(spacing: 8) {

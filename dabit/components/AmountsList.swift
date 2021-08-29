@@ -9,13 +9,14 @@ import SwiftUI
 
 struct AmountsList: View {
     var body: some View {
-        List(1..<10) { item in
+        List(1..<3) { item in
             VStack(alignment: .leading) {
                 Text("$\(item * 100)").font(.body).fontWeight(.semibold)
                 Text("After light \(item)").font(.caption).foregroundColor(.secondary)
             }
             .padding(.vertical, 4)
         }
+        .listStyle(DefaultListStyle())
     }
 }
 
