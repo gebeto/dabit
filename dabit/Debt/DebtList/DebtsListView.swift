@@ -26,10 +26,19 @@ struct DebtsListView: View {
         try? context.save();
     }
     
+    func deleteItem(debt: CDDebt) {
+        context.delete(debt);
+    }
+    
     var body: some View {
         NavigationView {
-            List(debts, id: \.id) { item in
-                DebtsListItemView(debt: item)
+            List {
+                ForEach(debts, id: \.id) { item in
+                    DebtsListItemView(debt: item)
+                }.onDelete(perform: { indexSet in
+                    indexSet.map{ debts[$0] }.forEach(self.deleteItem)
+                    try? context.save();
+                })
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Debts")
