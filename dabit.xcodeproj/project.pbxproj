@@ -10,6 +10,7 @@
 		AD422A0326DAD77300BA3331 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0226DAD77300BA3331 /* Persistence.swift */; };
 		AD422A0526DB9CEF00BA3331 /* DButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0426DB9CEF00BA3331 /* DButton.swift */; };
 		AD422A0726DB9F8100BA3331 /* AmountsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0626DB9F8100BA3331 /* AmountsList.swift */; };
+		AD422A0926DBB6DA00BA3331 /* CreateAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */; };
 		AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD5AB6DF26DACF2A00B4B138 /* dabit.xcdatamodeld */; };
 		ADC04B2C26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC04B2A26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift */; };
 		ADC04B2D26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC04B2B26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift */; };
@@ -28,6 +29,7 @@
 		AD422A0226DAD77300BA3331 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		AD422A0426DB9CEF00BA3331 /* DButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DButton.swift; sourceTree = "<group>"; };
 		AD422A0626DB9F8100BA3331 /* AmountsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountsList.swift; sourceTree = "<group>"; };
+		AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAmountView.swift; sourceTree = "<group>"; };
 		AD5AB6E026DACF2A00B4B138 /* dabit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dabit.xcdatamodel; sourceTree = "<group>"; };
 		ADC04B2A26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDDebt+CoreDataClass.swift"; path = "dabit/CDDebt+CoreDataClass.swift"; sourceTree = "<group>"; };
 		ADC04B2B26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDDebt+CoreDataProperties.swift"; path = "dabit/CDDebt+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				ADFE6ADB26DABB6400635280 /* ChumbaView.swift */,
 				AD422A0426DB9CEF00BA3331 /* DButton.swift */,
 				AD422A0626DB9F8100BA3331 /* AmountsList.swift */,
+				AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				ADC04B2D26DAD58F00A95A55 /* CDDebt+CoreDataProperties.swift in Sources */,
 				AD422A0326DAD77300BA3331 /* Persistence.swift in Sources */,
 				ADFF2A6B26DA7F6F0034B989 /* dabitApp.swift in Sources */,
+				AD422A0926DBB6DA00BA3331 /* CreateAmountView.swift in Sources */,
 				ADC04B2C26DAD58F00A95A55 /* CDDebt+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

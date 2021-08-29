@@ -13,6 +13,8 @@ struct DebtsListView: View {
     @Environment(\.managedObjectContext) var context;
     @FetchRequest(entity: CDDebt.entity(), sortDescriptors: []) var debts: FetchedResults<CDDebt>
     
+    @State var addItemOpened = false;
+    
     let layout = [
         GridItem(.flexible())
     ]
@@ -45,9 +47,7 @@ struct DebtsListView: View {
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
-                        withAnimation(.spring()) {
-                            addItem(title: "Hello", amount: 1000, avatar: "placeholder3")
-                        }
+                        addItemOpened = true;
                     }, label: {
                         Image(systemName: "plus")
                             .foregroundColor(.accentColor)
@@ -65,6 +65,25 @@ struct DebtsListView: View {
                             })
                         })
                 })
+            })
+            .sheet(isPresented: $addItemOpened, content: {
+                NavigationView {
+                    VStack {
+                        CreateAmountView(onAdd: { amount in
+                            addItemOpened = false;
+                            withAnimation(.spring()) {
+                                addItem(title: "Hello", amount: Int32(amount), avatar: "placeholder3")
+                            }
+                        })
+                    }
+                    .toolbar(content: {
+                        Button(action: {
+                            addItemOpened = false;
+                        }, label: {
+                            Image(systemName: "xmark.circle.fill")
+                        })
+                    })
+                }
             })
         }
     }
