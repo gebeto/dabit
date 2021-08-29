@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DebtDetailView: View {
-    @Environment(\.managedObjectContext) var context;
-    @Environment(\.presentationMode) var presentationMode
     let debt: CDDebt;
     
     var body: some View {
@@ -34,26 +32,14 @@ struct DebtDetailView: View {
                     .padding(.leading, 10)
                 }.padding()
                     
-                ChumbaView()
+                AmountsList()
                 
                 Spacer()
                 
-                VStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss();
-                        self.context.delete(debt);
-                        try? self.context.save();
-                    }, label: {
-                        Spacer()
-                        Label("Close debt", systemImage: "trash.circle.fill")
-                            .foregroundColor(.red)
-                            .font(.body.bold())
-                            .imageScale(.large)
-                        Spacer()
+                VStack() {
+                    DButton(title: "Add more", systemIcon: "plus.circle.fill", action: {
+                        print("Add more")
                     })
-                    .padding()
-                    .background(Color(red: 0, green: 0, blue: 0, opacity: 0.04))
-                    .cornerRadius(8)
                 }.padding()
             }
             .navigationTitle("More info")
@@ -62,16 +48,14 @@ struct DebtDetailView: View {
 }
 
 struct DebtView_Previews: PreviewProvider {
-    static var debt: CDDebt = {
-        let debt = CDDebt()
-        debt.id = UUID();
-        debt.amount = 1000;
-        debt.title = "Slavik Nychkalo";
-        debt.avatar = "placeholder1";
-        return debt;
-    }()
-    
     static var previews: some View {
-        DebtDetailView(debt: debt)
+        DebtDetailView(debt: {
+            let debt = CDDebt()
+            debt.id = UUID();
+            debt.amount = 1000;
+            debt.title = "Slavik Nychkalo";
+            debt.avatar = "placeholder1";
+            return debt;
+        }())
     }
 }
