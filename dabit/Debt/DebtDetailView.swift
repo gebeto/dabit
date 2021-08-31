@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DebtDetailView: View {
-    let debt: CDDebt;
+    var debt: CDDebt;
+    var addNewAmount: (CDDebt) -> Void;
     
     var body: some View {
         NavigationView {
@@ -31,14 +32,17 @@ struct DebtDetailView: View {
                     }
                     .padding(.leading, 10)
                 }.padding()
-                    
-                AmountsList()
+                
+                if let allAmounts = debt.amounts?.allObjects as? [CDAmount] {
+                    AmountsList(items: allAmounts)
+                }
                 
                 Spacer()
                 
                 VStack() {
                     DButton(title: "Add more", systemIcon: "plus.circle.fill", action: {
-                        print("Add more")
+                        print("Add more hello")
+                        self.addNewAmount(debt);
                     })
                 }.padding()
             }
@@ -49,13 +53,18 @@ struct DebtDetailView: View {
 
 struct DebtView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtDetailView(debt: {
-            let debt = CDDebt()
-            debt.id = UUID();
-            debt.amount = 1000;
-            debt.title = "Slavik Nychkalo";
-            debt.avatar = "placeholder1";
-            return debt;
-        }())
+        DebtDetailView(
+            debt: {
+                let debt = CDDebt()
+                debt.id = UUID();
+                debt.amount = 1000;
+                debt.title = "Slavik Nychkalo";
+                debt.avatar = "placeholder1";
+                return debt;
+            }(),
+            addNewAmount: { debt in
+                
+            }
+        )
     }
 }

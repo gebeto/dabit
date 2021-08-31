@@ -14,9 +14,7 @@ struct DButton: View {
     let action: () -> Void;
     
     var body: some View {
-        Button(action: {
-            print("Add more")
-        }, label: {
+        Button(action: action, label: {
             Label(title, systemImage: systemIcon)
                 .foregroundColor(.white)
                 .font(.body.bold())

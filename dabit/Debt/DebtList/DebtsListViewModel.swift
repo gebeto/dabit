@@ -41,6 +41,17 @@ class DebtsListViewModel: ObservableObject {
         saveAndFetch();
     }
     
+    func addNewAmount(debt: CDDebt) {
+        print("Hello world! add new amount")
+        let newAmount = CDAmount(context: container.viewContext);
+        newAmount.id = UUID();
+        newAmount.amount = 100;
+        newAmount.debt = debt;
+        debt.addToAmounts(newAmount);
+        saveAndFetch();
+        print(debt);
+    }
+    
     private func deleteItem(debt: CDDebt) {
         container.viewContext.delete(debt);
     }

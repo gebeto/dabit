@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct AmountsList: View {
+    var items: [CDAmount];
+    
     var body: some View {
-        List(1..<3) { item in
+        List(items, id: \.self.id) { item in
             VStack(alignment: .leading) {
-                Text("$\(item * 100)").font(.body).fontWeight(.semibold)
-                Text("After light \(item)").font(.caption).foregroundColor(.secondary)
+                Text("$\(item.amount * 100)")
+                    .font(.body)
+                    .fontWeight(.semibold)
+                if item.createdAt != nil {
+                    Text("After light \(item.createdAt!, formatter: DateFormatter())")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
             .padding(.vertical, 4)
         }
@@ -23,7 +31,7 @@ struct AmountsList: View {
 struct AmountsList_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            AmountsList()
+            AmountsList(items: [])
         }
         .frame(width:300, height: 400)
         .previewLayout(.sizeThatFits)

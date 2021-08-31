@@ -10,7 +10,6 @@ import CoreData
 
 
 struct DebtsListView: View {
-//    @FetchRequest(entity: CDDebt.entity(), sortDescriptors: []) var debts: FetchedResults<CDDebt>;
     @StateObject private var viewModel: DebtsListViewModel = DebtsListViewModel();
     @State var isAddItem = false;
     
@@ -21,11 +20,11 @@ struct DebtsListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.debts, id: \.id) { item in
+                ForEach(viewModel.debts, id: \.self.id) { item in
                     if item.avatar == nil {
                         Text("Loading...")
                     } else {
-                        DebtsListItemView(debt: item)
+                        DebtsListItemView(debt: item, addNewAmount: viewModel.addNewAmount)
                     }
                 }
                 .onDelete(perform: self.viewModel.deleteItems)
