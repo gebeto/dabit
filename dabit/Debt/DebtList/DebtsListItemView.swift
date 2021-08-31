@@ -9,7 +9,6 @@ import SwiftUI
 
 
 struct DebtsListItemView: View {
-    @Environment(\.managedObjectContext) var context;
     let debt: CDDebt;
     
     @State var opened = false;
@@ -51,6 +50,6 @@ struct DebtItemView_Previews: PreviewProvider {
                 return debt;
             }()
         )
-            .previewLayout(.sizeThatFits)
+        .previewLayout(.sizeThatFits)
     }
 }

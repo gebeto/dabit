@@ -10,44 +10,32 @@ import CoreData
 
 
 struct DebtsListView: View {
-    @Environment(\.managedObjectContext) var context;
-    @FetchRequest(entity: CDDebt.entity(), sortDescriptors: []) var debts: FetchedResults<CDDebt>
-    
-    @State var addItemOpened = false;
+//    @FetchRequest(entity: CDDebt.entity(), sortDescriptors: []) var debts: FetchedResults<CDDebt>;
+    @StateObject private var viewModel: DebtsListViewModel = DebtsListViewModel();
+    @State var isAddItem = false;
     
     let layout = [
         GridItem(.flexible())
     ]
     
-    func addItem(title: String, amount: Int32, avatar: String) {
-        let debt = CDDebt(context: context);
-        debt.id = UUID();
-        debt.amount = amount;
-        debt.avatar = avatar;
-        debt.title = title;
-        try? context.save();
-    }
-    
-    func deleteItem(debt: CDDebt) {
-        context.delete(debt);
-    }
-    
     var body: some View {
         NavigationView {
             List {
-                ForEach(debts, id: \.id) { item in
-                    DebtsListItemView(debt: item)
-                }.onDelete(perform: { indexSet in
-                    indexSet.map{ debts[$0] }.forEach(self.deleteItem)
-                    try? context.save();
-                })
+                ForEach(viewModel.debts, id: \.id) { item in
+                    if item.avatar == nil {
+                        Text("Loading...")
+                    } else {
+                        DebtsListItemView(debt: item)
+                    }
+                }
+                .onDelete(perform: self.viewModel.deleteItems)
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Debts")
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
-                        addItemOpened = true;
+                        isAddItem = true;
                     }, label: {
                         Image(systemName: "plus")
                             .foregroundColor(.accentColor)
@@ -66,26 +54,28 @@ struct DebtsListView: View {
                         })
                 })
             })
-            .sheet(isPresented: $addItemOpened, content: {
+            .sheet(isPresented: $isAddItem, content: {
                 NavigationView {
                     VStack {
                         CreateAmountView(onAdd: { amount in
-                            addItemOpened = false;
+                            isAddItem = false;
                             withAnimation(.spring()) {
-                                addItem(title: "Hello", amount: Int32(amount), avatar: "placeholder3")
+                                viewModel.addItem(title: "Hello", amount: Int32(amount), avatar: "placeholder3")
                             }
                         })
                     }
                     .toolbar(content: {
                         Button(action: {
-                            addItemOpened = false;
+                            isAddItem = false;
                         }, label: {
                             Image(systemName: "xmark.circle.fill")
                         })
                     })
                 }
             })
-        }
+        }.onAppear(perform: {
+            viewModel.fetchItems()
+        })
     }
 }
 
