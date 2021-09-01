@@ -59,7 +59,7 @@ struct DebtsListView: View {
                         CreateAmountView(onAdd: { amount in
                             isAddItem = false;
                             withAnimation(.spring()) {
-                                viewModel.addItem(title: "Hello", amount: Int32(amount), avatar: "placeholder3")
+                                viewModel.addItem(title: "Slavik Nychkalo", amount: Int32(amount), avatar: "placeholder3")
                             }
                         })
                     }

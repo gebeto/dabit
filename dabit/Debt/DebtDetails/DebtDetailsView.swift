@@ -11,6 +11,16 @@ struct DebtDetailsView: View {
     let viewModel = DebtDetailsViewModel();
     @StateObject var debt: CDDebt;
     
+    var amounts: [CDAmount] {
+        return (debt.amounts as? Set<CDAmount>)?.sorted(by: { $0.createdAt?.compare($1.createdAt!) == .orderedDescending }) ?? []
+    }
+    
+    var summary: Int32 {
+        return amounts.map({ $0.amount }).reduce(0, { result, amount in
+            result + amount
+        })
+    }
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -19,23 +29,21 @@ struct DebtDetailsView: View {
                         .resizable()
                         .frame(width: 80, height: 80)
                         .cornerRadius(40)
-                    
-                    VStack(alignment: .leading) {
-                        Text(debt.title == nil ? "Unknown" : debt.title!)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
-                        Text("$\(debt.amount)")
-                            .font(.title2)
-                            .fontWeight(.regular)
-                            .foregroundColor(.secondary)
+                        .padding(.leading, 20)
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Text("$\(summary)")
+                            .font(Font.system(size: 64, design: .rounded))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.green)
+                            .minimumScaleFactor(0.3)
+                            .lineLimit(1)
+                        Spacer()
                     }
-                    .padding(.leading, 10)
+                    .padding([.horizontal], 20)
                 }.padding()
                 
-                if let allAmounts = (debt.amounts as? Set<CDAmount>)?.sorted(by: { $0.createdAt?.compare($1.createdAt!) == .orderedDescending }) {
-                    AmountsList(items: allAmounts)
-                }
+                AmountsList(items: amounts)
                 
                 Spacer()
                 
@@ -47,7 +55,7 @@ struct DebtDetailsView: View {
                     })
                 }.padding()
             }
-            .navigationTitle("More info")
+            .navigationTitle(debt.title!)
         }
     }
 }
