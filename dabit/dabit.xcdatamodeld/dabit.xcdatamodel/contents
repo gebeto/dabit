@@ -6,7 +6,6 @@
         <relationship name="debt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDDebt" inverseName="amounts" inverseEntity="CDDebt"/>
     </entity>
     <entity name="CDDebt" representedClassName=".CDDebt" syncable="YES" codeGenerationType="class">
-        <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="avatar" optional="YES" attributeType="String" defaultValueString="placeholder-default"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -14,6 +13,6 @@
     </entity>
     <elements>
         <element name="CDAmount" positionX="-45" positionY="-9" width="128" height="74"/>
-        <element name="CDDebt" positionX="-340.2634887695312" positionY="-61.638427734375" width="128" height="104"/>
+        <element name="CDDebt" positionX="-340.2634887695312" positionY="-61.638427734375" width="128" height="89"/>
     </elements>
 </model>

@@ -59,7 +59,6 @@ struct PersistenceController {
         for _ in 0..<10 {
             let newItem = CDDebt(context: viewContext)
             newItem.title = "Test"
-            newItem.amount = 1000
             newItem.avatar = "placeholder1"
         }
         do {

@@ -10,17 +10,7 @@ import SwiftUI
 struct DebtDetailsView: View {
     let viewModel = DebtDetailsViewModel();
     @StateObject var debt: CDDebt;
-    
-    var amounts: [CDAmount] {
-        return (debt.amounts as? Set<CDAmount>)?.sorted(by: { $0.createdAt?.compare($1.createdAt!) == .orderedDescending }) ?? []
-    }
-    
-    var summary: Int32 {
-        return amounts.map({ $0.amount }).reduce(0, { result, amount in
-            result + amount
-        })
-    }
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -32,7 +22,7 @@ struct DebtDetailsView: View {
                         .padding(.leading, 20)
                     HStack(alignment: .center) {
                         Spacer()
-                        Text("$\(summary)")
+                        Text("$\(debt.amount)")
                             .font(Font.system(size: 64, design: .rounded))
                             .fontWeight(.semibold)
                             .foregroundColor(.green)
@@ -43,7 +33,7 @@ struct DebtDetailsView: View {
                     .padding([.horizontal], 20)
                 }.padding()
                 
-                AmountsList(items: amounts)
+                AmountsList(items: debt.amountsArray)
                 
                 Spacer()
                 
@@ -65,7 +55,6 @@ struct DebtDetailsView_Previews: PreviewProvider {
         DebtDetailsView(
             debt: {
                 let debt = CDDebt()
-                debt.amount = 1000;
                 debt.title = "Slavik Nychkalo";
                 debt.avatar = "placeholder1";
                 return debt;
