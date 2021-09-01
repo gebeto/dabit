@@ -20,11 +20,11 @@ struct DebtsListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.debts, id: \.self.id) { item in
+                ForEach(viewModel.debts, id: \.objectID) { item in
                     if item.avatar == nil {
                         Text("Loading...")
                     } else {
-                        DebtsListItemView(debt: item, addNewAmount: viewModel.addNewAmount)
+                        DebtsListItemView(debt: item)
                     }
                 }
                 .onDelete(perform: self.viewModel.deleteItems)

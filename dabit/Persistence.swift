@@ -9,27 +9,24 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
-    static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = CDDebt(context: viewContext)
-            newItem.id = UUID()
-            newItem.title = "Test"
-            newItem.amount = 1000
-            newItem.avatar = "placeholder1"
-        }
+    static var viewContext: NSManagedObjectContext {
+        return shared.container.viewContext;
+    }
+    
+    func fetchDebts(callback: @escaping ([CDDebt]) -> Void) {
+        let request = NSFetchRequest<CDDebt>(entityName: CDDebt.entity().name!);
         do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            let debts = try container.viewContext.fetch(request);
+            callback(debts);
+        } catch let error {
+            print("Error fetching. \(error)");
+            callback([]);
         }
-        return result
-    }()
+    }
+    
+    func save() {
+        try? container.viewContext.save();
+    }
 
     let container: NSPersistentContainer
 
@@ -55,4 +52,24 @@ struct PersistenceController {
             }
         })
     }
+    
+    static var preview: PersistenceController = {
+        let result = PersistenceController(inMemory: true)
+        let viewContext = result.container.viewContext
+        for _ in 0..<10 {
+            let newItem = CDDebt(context: viewContext)
+            newItem.title = "Test"
+            newItem.amount = 1000
+            newItem.avatar = "placeholder1"
+        }
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        return result
+    }()
 }

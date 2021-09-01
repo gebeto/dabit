@@ -13,7 +13,7 @@ struct AmountsList: View {
     var body: some View {
         List(items, id: \.self.id) { item in
             VStack(alignment: .leading) {
-                Text("$\(item.amount * 100)")
+                Text("$\(item.amount)")
                     .font(.body)
                     .fontWeight(.semibold)
                 if item.createdAt != nil {

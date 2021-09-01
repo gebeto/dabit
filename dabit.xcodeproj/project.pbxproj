@@ -13,6 +13,7 @@
 		AD422A0926DBB6DA00BA3331 /* CreateAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */; };
 		AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD5AB6DF26DACF2A00B4B138 /* dabit.xcdatamodeld */; };
 		ADCADDF826DEB5B30076019B /* DebtsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCADDF726DEB5B30076019B /* DebtsListViewModel.swift */; };
+		ADE22F2626DFF71F00D4F86C /* DebtDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE22F2526DFF71F00D4F86C /* DebtDetailsViewModel.swift */; };
 		ADFE6ADC26DABB6400635280 /* ChumbaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFE6ADB26DABB6400635280 /* ChumbaView.swift */; };
 		ADFF2A6B26DA7F6F0034B989 /* dabitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */; };
 		ADFF2A6D26DA7F6F0034B989 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A6C26DA7F6F0034B989 /* ContentView.swift */; };
@@ -20,7 +21,7 @@
 		ADFF2A7226DA7F700034B989 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFF2A7126DA7F700034B989 /* Preview Assets.xcassets */; };
 		ADFF2A7A26DA83120034B989 /* DebtsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7926DA83120034B989 /* DebtsListView.swift */; };
 		ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7B26DA83440034B989 /* SettingsView.swift */; };
-		ADFF2A7E26DA9C240034B989 /* DebtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */; };
+		ADFF2A7E26DA9C240034B989 /* DebtDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A7D26DA9C240034B989 /* DebtDetailsView.swift */; };
 		ADFF2A8226DAA4FB0034B989 /* DebtsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A8126DAA4FB0034B989 /* DebtsListItemView.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAmountView.swift; sourceTree = "<group>"; };
 		AD5AB6E026DACF2A00B4B138 /* dabit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dabit.xcdatamodel; sourceTree = "<group>"; };
 		ADCADDF726DEB5B30076019B /* DebtsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsListViewModel.swift; sourceTree = "<group>"; };
+		ADE22F2526DFF71F00D4F86C /* DebtDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailsViewModel.swift; sourceTree = "<group>"; };
 		ADFE6ADB26DABB6400635280 /* ChumbaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumbaView.swift; sourceTree = "<group>"; };
 		ADFF2A6726DA7F6F0034B989 /* dabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dabitApp.swift; sourceTree = "<group>"; };
@@ -40,7 +42,7 @@
 		ADFF2A7326DA7F700034B989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADFF2A7926DA83120034B989 /* DebtsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsListView.swift; sourceTree = "<group>"; };
 		ADFF2A7B26DA83440034B989 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailView.swift; sourceTree = "<group>"; };
+		ADFF2A7D26DA9C240034B989 /* DebtDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtDetailsView.swift; sourceTree = "<group>"; };
 		ADFF2A8126DAA4FB0034B989 /* DebtsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,7 +60,7 @@
 		AD5AB6D826DAC18100B4B138 /* Debt */ = {
 			isa = PBXGroup;
 			children = (
-				ADFF2A7D26DA9C240034B989 /* DebtDetailView.swift */,
+				ADE22F2426DFF70200D4F86C /* DebtDetails */,
 				AD5AB6D926DAC19C00B4B138 /* DebtList */,
 			);
 			path = Debt;
@@ -91,6 +93,15 @@
 				AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		ADE22F2426DFF70200D4F86C /* DebtDetails */ = {
+			isa = PBXGroup;
+			children = (
+				ADFF2A7D26DA9C240034B989 /* DebtDetailsView.swift */,
+				ADE22F2526DFF71F00D4F86C /* DebtDetailsViewModel.swift */,
+			);
+			path = DebtDetails;
 			sourceTree = "<group>";
 		};
 		ADFF2A5E26DA7F6F0034B989 = {
@@ -205,10 +216,11 @@
 			files = (
 				ADFF2A6D26DA7F6F0034B989 /* ContentView.swift in Sources */,
 				AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */,
-				ADFF2A7E26DA9C240034B989 /* DebtDetailView.swift in Sources */,
+				ADFF2A7E26DA9C240034B989 /* DebtDetailsView.swift in Sources */,
 				ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */,
 				AD422A0526DB9CEF00BA3331 /* DButton.swift in Sources */,
 				ADFF2A8226DAA4FB0034B989 /* DebtsListItemView.swift in Sources */,
+				ADE22F2626DFF71F00D4F86C /* DebtDetailsViewModel.swift in Sources */,
 				ADFF2A7A26DA83120034B989 /* DebtsListView.swift in Sources */,
 				AD422A0726DB9F8100BA3331 /* AmountsList.swift in Sources */,
 				ADFE6ADC26DABB6400635280 /* ChumbaView.swift in Sources */,

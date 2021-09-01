@@ -10,26 +10,23 @@ import CoreData
 
 
 class DebtsListViewModel: ObservableObject {
-    private var container: NSPersistentContainer = PersistenceController.shared.container;
+    private var container: PersistenceController = PersistenceController.shared;
+    private var viewContext: NSManagedObjectContext = PersistenceController.viewContext;
     @Published var debts: [CDDebt] = [];
     
     func saveAndFetch() {
-        try? container.viewContext.save();
+        try? viewContext.save();
         fetchItems();
     }
     
     func fetchItems() {
-        let request = NSFetchRequest<CDDebt>(entityName: CDDebt.entity().name!);
-        do {
-            self.debts = try container.viewContext.fetch(request)
-        } catch let error {
-            print("Error fetching. \(error)");
+        container.fetchDebts { debts in
+            self.debts = debts;
         }
     }
     
     func addItem(title: String, amount: Int32, avatar: String) {
-        let debt = CDDebt(context: container.viewContext);
-        debt.id = UUID();
+        let debt = CDDebt(context: viewContext);
         debt.amount = amount;
         debt.avatar = avatar;
         debt.title = title;
@@ -41,19 +38,8 @@ class DebtsListViewModel: ObservableObject {
         saveAndFetch();
     }
     
-    func addNewAmount(debt: CDDebt) {
-        print("Hello world! add new amount")
-        let newAmount = CDAmount(context: container.viewContext);
-        newAmount.id = UUID();
-        newAmount.amount = 100;
-        newAmount.debt = debt;
-        debt.addToAmounts(newAmount);
-        saveAndFetch();
-        print(debt);
-    }
-    
     private func deleteItem(debt: CDDebt) {
-        container.viewContext.delete(debt);
+        viewContext.delete(debt);
     }
     
 }

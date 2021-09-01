@@ -10,7 +10,6 @@ import SwiftUI
 
 struct DebtsListItemView: View {
     var debt: CDDebt;
-    var addNewAmount: (CDDebt) -> Void;
     
     @State var opened = false;
     
@@ -34,7 +33,7 @@ struct DebtsListItemView: View {
             opened = true;
         })
         .sheet(isPresented: $opened, content: {
-            DebtDetailView(debt: debt, addNewAmount: addNewAmount)
+            DebtDetailsView(debt: debt)
         })
     }
 }
@@ -49,10 +48,7 @@ struct DebtItemView_Previews: PreviewProvider {
                 debt.avatar = "placeholder1";
                 debt.amount = 1000;
                 return debt;
-            }(),
-            addNewAmount: { debt in
-                print(debt);
-            }
+            }()
         )
         .previewLayout(.sizeThatFits)
     }

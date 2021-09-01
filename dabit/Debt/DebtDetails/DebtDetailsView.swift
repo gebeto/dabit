@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct DebtDetailView: View {
+struct DebtDetailsView: View {
+    let viewModel = DebtDetailsViewModel();
     @StateObject var debt: CDDebt;
-    var addNewAmount: (CDDebt) -> Void;
     
     var body: some View {
         NavigationView {
@@ -33,7 +33,7 @@ struct DebtDetailView: View {
                     .padding(.leading, 10)
                 }.padding()
                 
-                if let allAmounts = debt.amounts?.allObjects as? [CDAmount] {
+                if let allAmounts = (debt.amounts as? Set<CDAmount>)?.sorted(by: { $0.createdAt?.compare($1.createdAt!) == .orderedDescending }) {
                     AmountsList(items: allAmounts)
                 }
                 
@@ -41,8 +41,9 @@ struct DebtDetailView: View {
                 
                 VStack() {
                     DButton(title: "Add more", systemIcon: "plus.circle.fill", action: {
-                        print("Add more hello")
-                        self.addNewAmount(debt);
+                        withAnimation(.spring()) {
+                            viewModel.addNewAmount(debt: debt, amount: 123);
+                        }
                     })
                 }.padding()
             }
@@ -51,20 +52,16 @@ struct DebtDetailView: View {
     }
 }
 
-struct DebtView_Previews: PreviewProvider {
+struct DebtDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtDetailView(
+        DebtDetailsView(
             debt: {
                 let debt = CDDebt()
-                debt.id = UUID();
                 debt.amount = 1000;
                 debt.title = "Slavik Nychkalo";
                 debt.avatar = "placeholder1";
                 return debt;
-            }(),
-            addNewAmount: { debt in
-                
-            }
+            }()
         )
     }
 }
