@@ -34,16 +34,6 @@ struct DebtsListView: View {
                 .navigationTitle("Debts")
                 .toolbar(content: {
                     ToolbarItem(placement: .navigationBarTrailing, content: {
-                        Button(action: {
-                            withAnimation(.spring()) {
-                                viewModel.addItem(title: "Slavik Nychkalo", avatar: "placeholder3")
-                            }
-                        }, label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(.accentColor)
-                        })
-                    })
-                    ToolbarItem(placement: .navigationBarTrailing, content: {
                         NavigationLink(
                             destination: Text("Settings"),
                             label: {
