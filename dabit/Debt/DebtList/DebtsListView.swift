@@ -11,7 +11,7 @@ import CoreData
 
 struct DebtsListView: View {
     @StateObject private var viewModel: DebtsListViewModel = DebtsListViewModel();
-    @State var isAddItem = false;
+    @State var isAddUserShown = false;
     
     let layout = [
         GridItem(.flexible())
@@ -34,7 +34,9 @@ struct DebtsListView: View {
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button(action: {
-                        isAddItem = true;
+                        withAnimation(.spring()) {
+                            viewModel.addItem(title: "Slavik Nychkalo", avatar: "placeholder3")
+                        }
                     }, label: {
                         Image(systemName: "plus")
                             .foregroundColor(.accentColor)
@@ -53,25 +55,26 @@ struct DebtsListView: View {
                         })
                 })
             })
-            .sheet(isPresented: $isAddItem, content: {
-                NavigationView {
-                    VStack {
-                        CreateAmountView(onAdd: { amount in
-                            isAddItem = false;
-                            withAnimation(.spring()) {
-                                viewModel.addItem(title: "Slavik Nychkalo", amount: Int32(amount), avatar: "placeholder3")
-                            }
-                        })
-                    }
-                    .toolbar(content: {
-                        Button(action: {
-                            isAddItem = false;
-                        }, label: {
-                            Image(systemName: "xmark.circle.fill")
-                        })
-                    })
-                }
-            })
+//            .sheet(isPresented: $isAddItem, content: {
+//                NavigationView {
+//                    VStack {
+//                        viewModel.addItem(title: "Slavik Nychkalo", amount: Int32(amount), avatar: "placeholder3")
+//                        CreateAmountView(onAdd: { amount in
+//                            isAddItem = false;
+//                            withAnimation(.spring()) {
+//                                viewModel.addItem(title: "Slavik Nychkalo", amount: Int32(amount), avatar: "placeholder3")
+//                            }
+//                        })
+//                    }
+//                    .toolbar(content: {
+//                        Button(action: {
+//                            isAddItem = false;
+//                        }, label: {
+//                            Image(systemName: "xmark.circle.fill")
+//                        })
+//                    })
+//                }
+//            })
         }.onAppear(perform: {
             viewModel.fetchItems()
         })

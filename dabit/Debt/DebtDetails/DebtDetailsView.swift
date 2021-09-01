@@ -10,6 +10,7 @@ import SwiftUI
 struct DebtDetailsView: View {
     let viewModel = DebtDetailsViewModel();
     @StateObject var debt: CDDebt;
+    @State var isAddModalShow = false;
 
     var body: some View {
         NavigationView {
@@ -39,13 +40,19 @@ struct DebtDetailsView: View {
                 
                 VStack() {
                     DButton(title: "Add more", systemIcon: "plus.circle.fill", action: {
-                        withAnimation(.spring()) {
-                            viewModel.addNewAmount(debt: debt, amount: 123);
-                        }
+                        isAddModalShow = true;
                     })
                 }.padding()
             }
             .navigationTitle(debt.title!)
+            .sheet(isPresented: $isAddModalShow) {
+                CreateAmountView { amount in
+                    isAddModalShow = false;
+                    withAnimation(.spring()) {
+                        viewModel.addNewAmount(debt: debt, amount: Int32(amount));
+                    }
+                }
+            }
         }
     }
 }

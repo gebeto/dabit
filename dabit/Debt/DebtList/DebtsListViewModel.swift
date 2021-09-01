@@ -25,7 +25,7 @@ class DebtsListViewModel: ObservableObject {
         }
     }
     
-    func addItem(title: String, amount: Int32, avatar: String) {
+    func addItem(title: String, avatar: String) {
         let debt = CDDebt(context: viewContext);
         debt.avatar = avatar;
         debt.title = title;
