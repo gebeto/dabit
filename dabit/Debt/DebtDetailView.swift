@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DebtDetailView: View {
-    var debt: CDDebt;
+    @StateObject var debt: CDDebt;
     var addNewAmount: (CDDebt) -> Void;
     
     var body: some View {
