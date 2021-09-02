@@ -24,7 +24,7 @@ struct KeyboardButton: View {
         .font(.system(size: 21, weight: .bold, design: .rounded))
         .background(Color.primary.opacity(0.04))
         .foregroundColor(Color.primary.opacity(0.8))
-        .cornerRadius(6)
+        .cornerRadius(12)
     }
 }
 
@@ -103,9 +103,9 @@ struct CreateAmountView: View {
                 HStack(spacing: 8) {
                     KeyboardButton(title: "⌫", action: {popItem()})
                     KeyboardButton(title: "0", action: {pushItem(item: 0)})
-                    KeyboardButton(title: "Add", action: {
+                    DButton(title: nil, systemIcon: "plus.circle.fill") {
                         onAdd(toJoined(items: valueArray));
-                    })
+                    }
                 }
             }
             .padding(8)

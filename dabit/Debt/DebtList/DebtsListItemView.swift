@@ -9,8 +9,12 @@ import SwiftUI
 
 
 struct DebtsListItemView: View {
+    let viewModel = DebtDetailsViewModel();
     @StateObject var debt: CDDebt;
-    @State var opened = false;
+    @State var isDetailsShown = false;
+    @State var isAddAmountShown = false;
+    
+    @State var added: Bool = false;
     
     var body: some View {
         if debt.avatar == nil {
@@ -30,12 +34,38 @@ struct DebtsListItemView: View {
                         .foregroundColor(.secondary)
                 }
                 .padding(16)
+                Spacer()
+                Image(systemName: "plus.circle.fill")
+                    .font(.system(size: 20))
+                    .foregroundColor(.green)
+                    .opacity(added ? 1 : 0)
+                    .scaleEffect(added ? 1.2 : 1.0)
+                    .rotationEffect(.degrees(added ? 10 : 0))
             }
-            .onTapGesture(perform: {
-                opened = true;
+            .onChange(of: added, perform: { value in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    withAnimation(.spring()) {
+                        added = false;
+                    }
+                }
             })
-            .sheet(isPresented: $opened, content: {
+            .onTapGesture(perform: {
+                isDetailsShown = true;
+            })
+            .onLongPressGesture {
+                isAddAmountShown = true;
+            }
+            .sheet(isPresented: $isDetailsShown, content: {
                 DebtDetailsView(debt: debt)
+            })
+            .sheet(isPresented: $isAddAmountShown, content: {
+                CreateAmountView { amount in
+                    isAddAmountShown = false;
+                    withAnimation(.spring()) {
+                        viewModel.addNewAmount(debt: debt, amount: Int32(amount));
+                        added = true;
+                    }
+                }
             })
         }
     }
