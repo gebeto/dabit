@@ -19,10 +19,35 @@ struct DebtsListItemView: View {
     
     @State var text: String = "";
     
+    @State var offset: CGSize = CGSize.zero;
+    
+    var degrees: Double {
+        if offset.animatableData.first > 45 {
+            return 90
+        }
+        return Double(offset.animatableData.first * 2)
+    }
+    
+    var scale: CGFloat {
+        return offset.animatableData.first > 0 ? offset.animatableData.first * 0.016 : 0
+    }
+    
+    var offsetLeft: CGFloat {
+        let half = offset.animatableData.first / 4;
+        return half - half / 2;
+    }
+    
     var body: some View {
         if debt.avatar == nil {
             EmptyView()
         } else {
+            ZStack(alignment: Alignment(horizontal: .leading, vertical: .center), content: {
+                Image(systemName: "plus.circle.fill")
+                .font(.system(size: 24))
+                .foregroundColor(.green)
+                .scaleEffect(self.scale)
+                .rotationEffect(.degrees(Double(degrees)))
+                .offset(x: offsetLeft)
             HStack {
                 Image(debt.avatar!)
                     .resizable()
@@ -46,6 +71,7 @@ struct DebtsListItemView: View {
                     .rotationEffect(.degrees(added ? 10 : 0))
                     .padding(.trailing, 8)
             }
+            .offset(self.offset)
             .onChange(of: added, perform: { value in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                     withAnimation(.spring()) {
@@ -56,14 +82,27 @@ struct DebtsListItemView: View {
             .onTapGesture(perform: {
                 isDetailsShown = true;
             })
-            .onLongPressGesture {
-                isAddAmountShown = true;
-            }
-//            .contextMenu(menuItems: {
-//                Button(action: { isAddAmountShown = true }, label: {
-//                    Label("Add amount", systemImage: "plus.circle.fill")
-//                })
-//            })
+            .gesture(
+                DragGesture(minimumDistance: 1.0)
+                    .onChanged({ drag in
+                        let curr = drag.translation.width;
+                        let tension = curr * 0.7;
+                        let res = curr - tension
+                        if res <= 0 {
+                            offset = CGSize.zero;
+                        } else if res > 0 {
+                            offset = CGSize(width: res, height: 0);
+                        }
+                    })
+                    .onEnded({ drag in
+                        withAnimation(.spring()) {
+                            if drag.translation.width > 80 {
+                                isAddAmountShown = true;
+                            }
+                            offset = CGSize.zero
+                        }
+                    })
+            )
             .sheet(isPresented: $isDetailsShown, content: {
                 DebtDetailsView(debt: debt)
             })
@@ -76,6 +115,7 @@ struct DebtsListItemView: View {
                         added = true;
                     }
                 }
+            })
             })
         }
     }

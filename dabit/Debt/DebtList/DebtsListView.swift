@@ -22,10 +22,12 @@ struct DebtsListView: View {
             NavigationView {
                 List {
                     ForEach(viewModel.debts, id: \.objectID) { item in
-                        if item.avatar == nil {
-                            Text("Loading...")
-                        } else {
-                            DebtsListItemView(debt: item)
+                        VStack {
+                            if item.avatar == nil {
+                                Text("Loading...")
+                            } else {
+                                DebtsListItemView(debt: item)
+                            }
                         }
                     }
                     .onDelete(perform: self.viewModel.deleteItems)
