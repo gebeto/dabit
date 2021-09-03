@@ -15,6 +15,9 @@ struct DebtsListItemView: View {
     @State var isAddAmountShown = false;
     
     @State var added: Bool = false;
+    @State var addedAmount: Int = 0;
+    
+    @State var text: String = "";
     
     var body: some View {
         if debt.avatar == nil {
@@ -32,15 +35,16 @@ struct DebtsListItemView: View {
                         .fontWeight(.regular)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                }
-                .padding(16)
+                }.padding(16)
                 Spacer()
-                Image(systemName: "plus.circle.fill")
-                    .font(.system(size: 20))
+                Text("+$\(addedAmount)")
+                    .font(.system(size: 14))
+                    .fontWeight(.semibold)
                     .foregroundColor(.green)
                     .opacity(added ? 1 : 0)
                     .scaleEffect(added ? 1.2 : 1.0)
                     .rotationEffect(.degrees(added ? 10 : 0))
+                    .padding(.trailing, 8)
             }
             .onChange(of: added, perform: { value in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
@@ -55,12 +59,18 @@ struct DebtsListItemView: View {
             .onLongPressGesture {
                 isAddAmountShown = true;
             }
+//            .contextMenu(menuItems: {
+//                Button(action: { isAddAmountShown = true }, label: {
+//                    Label("Add amount", systemImage: "plus.circle.fill")
+//                })
+//            })
             .sheet(isPresented: $isDetailsShown, content: {
                 DebtDetailsView(debt: debt)
             })
             .sheet(isPresented: $isAddAmountShown, content: {
                 CreateAmountView { amount in
                     isAddAmountShown = false;
+                    addedAmount = amount;
                     withAnimation(.spring()) {
                         viewModel.addNewAmount(debt: debt, amount: Int32(amount));
                         added = true;
