@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AmountsList: View {
-    var debt: CDDebt;
+    var person: CDPerson;
     @Environment(\.managedObjectContext) private var viewContext;
     @FetchRequest var items: FetchedResults<CDAmount>;
 
-    init(debt: CDDebt) {
-        self.debt = debt;
+    init(person: CDPerson) {
+        self.person = person;
         self._items = FetchRequest(
             entity: CDAmount.entity(),
-            sortDescriptors: [NSSortDescriptor(keyPath: \CDAmount.createdAt, ascending: false)],
-            predicate: NSPredicate(format: "debt == %@", debt)
+            sortDescriptors: [NSSortDescriptor(keyPath: \CDAmount.timestamp, ascending: false)],
+            predicate: NSPredicate(format: "person == %@", person)
         )
     }
     
@@ -27,8 +27,8 @@ struct AmountsList: View {
                 Text("$\(item.amount)")
                     .font(.body)
                     .fontWeight(.semibold)
-                if item.createdAt != nil {
-                    Text("After light \(item.createdAt!, formatter: DateFormatter())")
+                if item.timestamp != nil {
+                    Text("After light \(item.timestamp!, formatter: DateFormatter())")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }

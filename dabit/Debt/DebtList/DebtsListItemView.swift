@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DebtsListItemView: View {
     let viewModel = DebtDetailsViewModel();
-    @StateObject var debt: CDDebt;
+    @StateObject var person: CDPerson;
     @State var isDetailsShown = false;
     @State var isAddAmountShown = false;
     
@@ -38,7 +38,7 @@ struct DebtsListItemView: View {
     }
     
     var body: some View {
-        if debt.avatar == nil {
+        if person.avatar == nil {
             EmptyView()
         } else {
             ZStack(alignment: Alignment(horizontal: .leading, vertical: .center), content: {
@@ -49,14 +49,14 @@ struct DebtsListItemView: View {
                 .rotationEffect(.degrees(Double(degrees)))
                 .offset(x: offsetLeft)
             HStack {
-                Image(debt.avatar!)
+                Image(person.avatar!)
                     .resizable()
                     .frame(width: 48, height: 48, alignment: .center)
                     .cornerRadius(24)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(debt.title!)
+                    Text(person.name!)
                         .fontWeight(.semibold)
-                    Text("Amount: $\(debt.amount)")
+                    Text("Amount: $\(person.amount)")
                         .fontWeight(.regular)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -104,14 +104,14 @@ struct DebtsListItemView: View {
                     })
             )
             .sheet(isPresented: $isDetailsShown, content: {
-                DebtDetailsView(debt: debt)
+                DebtDetailsView(person: person)
             })
             .sheet(isPresented: $isAddAmountShown, content: {
                 CreateAmountView { amount in
                     isAddAmountShown = false;
                     addedAmount = amount;
                     withAnimation(.spring()) {
-                        viewModel.addNewAmount(debt: debt, amount: Int32(amount));
+                        viewModel.addNewAmount(person: person, amount: Int32(amount));
                         added = true;
                     }
                 }
@@ -125,11 +125,11 @@ struct DebtsListItemView: View {
 struct DebtItemView_Previews: PreviewProvider {
     static var previews: some View {
         DebtsListItemView(
-            debt: {
-                let debt = CDDebt()
-                debt.title = "Test Debt";
-                debt.avatar = "placeholder1";
-                return debt;
+            person: {
+                let person = CDPerson()
+                person.name = "Test Debt";
+                person.avatar = "placeholder1";
+                return person;
             }()
         )
         .previewLayout(.sizeThatFits)

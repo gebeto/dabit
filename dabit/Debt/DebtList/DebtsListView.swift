@@ -15,10 +15,10 @@ struct DebtsListView: View {
     @Environment(\.managedObjectContext) private var viewContext;
     
     @FetchRequest(
-        entity: CDDebt.entity(),
+        entity: CDPerson.entity(),
         sortDescriptors: [],
         predicate: nil
-    ) var debts: FetchedResults<CDDebt>;
+    ) var persons: FetchedResults<CDPerson>;
     
     let layout = [
         GridItem(.flexible())
@@ -28,18 +28,18 @@ struct DebtsListView: View {
         VStack {
             NavigationView {
                 List {
-                    ForEach(debts, id: \.self) { item in
+                    ForEach(persons, id: \.self) { person in
                         VStack {
-                            if item.avatar == nil {
+                            if person.avatar == nil {
                                 Text("Loading...")
                             } else {
-                                DebtsListItemView(debt: item)
+                                DebtsListItemView(person: person)
                             }
                         }
                     }
                     .onDelete { indexSet in
-                        indexSet.map{ debts[$0] }.forEach { debt in
-                            viewContext.delete(debt);
+                        indexSet.map{ persons[$0] }.forEach { person in
+                            viewContext.delete(person);
                         };
                     }
                 }
@@ -69,9 +69,9 @@ struct DebtsListView: View {
             }
             DButton(title: "Add user", systemIcon: "plus.circle.fill") {
                 withAnimation(.spring()) {
-                    let dd = CDDebt(context: viewContext);
-                    dd.title = "Slavik Nychkalo";
-                    dd.avatar = "placeholder3";
+                    let person = CDPerson(context: viewContext);
+                    person.name = "Slavik Nychkalo";
+                    person.avatar = "placeholder3";
                     try! viewContext.save();
                 }
             }

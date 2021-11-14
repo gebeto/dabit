@@ -12,12 +12,12 @@ import CoreData
 class DebtDetailsViewModel: ObservableObject {
     private var persistance = PersistenceController.shared;
     
-    func addNewAmount(debt: CDDebt, amount: Int32) {
+    func addNewAmount(person: CDPerson, amount: Int32) {
         let newAmount = CDAmount(context: persistance.container.viewContext);
         newAmount.amount = amount;
-        newAmount.createdAt = Date();
-        newAmount.debt = debt;
-        debt.addToAmounts(newAmount);
+        newAmount.timestamp = Date();
+        newAmount.person = person;
+        person.addToAmounts(newAmount);
         persistance.save();
     }
 }

@@ -13,17 +13,6 @@ struct PersistenceController {
         return shared.container.viewContext;
     }
     
-    func fetchDebts(callback: @escaping ([CDDebt]) -> Void) {
-        let request = NSFetchRequest<CDDebt>(entityName: CDDebt.entity().name!);
-        do {
-            let debts = try container.viewContext.fetch(request);
-            callback(debts);
-        } catch let error {
-            print("Error fetching. \(error)");
-            callback([]);
-        }
-    }
-    
     func save() {
         try? container.viewContext.save();
     }
@@ -57,8 +46,8 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = CDDebt(context: viewContext)
-            newItem.title = "Test"
+            let newItem = CDPerson(context: viewContext)
+            newItem.name = "Test"
             newItem.avatar = "placeholder1"
         }
         do {
