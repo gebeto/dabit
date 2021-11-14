@@ -43,7 +43,7 @@ struct AmountsList: View {
                 Button {
                     withAnimation {
                         item.done = !item.done;
-                        person.updatedAt = Date();
+                        item.person?.addToAmounts(item);
                         try! viewContext.save();
                     }
                 } label: {
