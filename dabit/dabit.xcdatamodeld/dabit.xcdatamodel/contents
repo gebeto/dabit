@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDAmount" representedClassName="CDAmount" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -9,7 +9,7 @@
         <attribute name="avatar" optional="YES" attributeType="String" defaultValueString="placeholder-default"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="amounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDAmount" inverseName="debt" inverseEntity="CDAmount"/>
+        <relationship name="amounts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDAmount" inverseName="debt" inverseEntity="CDAmount"/>
     </entity>
     <elements>
         <element name="CDAmount" positionX="-45" positionY="-9" width="128" height="74"/>

@@ -10,8 +10,15 @@ import CoreData
 
 
 struct DebtsListView: View {
-    @StateObject private var viewModel: DebtsListViewModel = DebtsListViewModel();
-    @State var isAddUserShown = false;
+    @State var isSettingsOpened = false;
+    
+    @Environment(\.managedObjectContext) private var viewContext;
+    
+    @FetchRequest(
+        entity: CDDebt.entity(),
+        sortDescriptors: [],
+        predicate: nil
+    ) var debts: FetchedResults<CDDebt>;
     
     let layout = [
         GridItem(.flexible())
@@ -21,7 +28,7 @@ struct DebtsListView: View {
         VStack {
             NavigationView {
                 List {
-                    ForEach(viewModel.debts, id: \.objectID) { item in
+                    ForEach(debts, id: \.self) { item in
                         VStack {
                             if item.avatar == nil {
                                 Text("Loading...")
@@ -30,7 +37,11 @@ struct DebtsListView: View {
                             }
                         }
                     }
-                    .onDelete(perform: self.viewModel.deleteItems)
+                    .onDelete { indexSet in
+                        indexSet.map{ debts[$0] }.forEach { debt in
+                            viewContext.delete(debt);
+                        };
+                    }
                 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Debts")
@@ -40,7 +51,8 @@ struct DebtsListView: View {
                             destination: Text("Settings"),
                             label: {
                                 Button(action: {
-                                    print("Settings")
+                                    print("Settings");
+                                    isSettingsOpened = true;
                                 }, label: {
                                     Image(systemName: "gear")
                                         .foregroundColor(.accentColor)
@@ -48,22 +60,23 @@ struct DebtsListView: View {
                             })
                     })
                 })
-            }.onAppear(perform: {
-                viewModel.fetchItems()
-            })
+                .sheet(isPresented: $isSettingsOpened) {
+                    isSettingsOpened = false;
+                } content: {
+                    SettingsView()
+                }
+
+            }
             DButton(title: "Add user", systemIcon: "plus.circle.fill") {
                 withAnimation(.spring()) {
-                    viewModel.addItem(title: "Slavik Nychkalo", avatar: "placeholder3")
+                    let dd = CDDebt(context: viewContext);
+                    dd.title = "Slavik Nychkalo";
+                    dd.avatar = "placeholder3";
+                    try! viewContext.save();
                 }
             }
             .padding(.horizontal, 10)
             .padding(.top, 4)
         }
-    }
-}
-
-struct DebtsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DebtsListView()
     }
 }

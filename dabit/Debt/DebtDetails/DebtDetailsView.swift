@@ -34,7 +34,7 @@ struct DebtDetailsView: View {
                     .padding([.horizontal], 20)
                 }.padding()
                 
-                AmountsList(items: debt.amountsArray)
+                AmountsList(debt: debt)
                 
                 Spacer()
                 

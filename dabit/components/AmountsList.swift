@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct AmountsList: View {
-    var items: [CDAmount];
+    var debt: CDDebt;
+    @Environment(\.managedObjectContext) private var viewContext;
+    @FetchRequest var items: FetchedResults<CDAmount>;
+
+    init(debt: CDDebt) {
+        self.debt = debt;
+        self._items = FetchRequest(
+            entity: CDAmount.entity(),
+            sortDescriptors: [NSSortDescriptor(keyPath: \CDAmount.createdAt, ascending: false)],
+            predicate: NSPredicate(format: "debt == %@", debt)
+        )
+    }
     
     var body: some View {
-        List(items, id: \.self.id) { item in
+        List(items, id: \.self) { item in
             VStack(alignment: .leading) {
                 Text("$\(item.amount)")
                     .font(.body)
@@ -25,15 +36,5 @@ struct AmountsList: View {
             .padding(.vertical, 4)
         }
         .listStyle(DefaultListStyle())
-    }
-}
-
-struct AmountsList_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            AmountsList(items: [])
-        }
-        .frame(width:300, height: 400)
-        .previewLayout(.sizeThatFits)
     }
 }
