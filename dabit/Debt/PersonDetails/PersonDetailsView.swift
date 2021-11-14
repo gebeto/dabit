@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct DebtDetailsView: View {
-    let viewModel = DebtDetailsViewModel();
+struct PersonDetailsView: View {
+    @Environment(\.managedObjectContext) private var viewContext;
     @StateObject var person: CDPerson;
     @State var isAddModalShow = false;
 
@@ -49,7 +49,12 @@ struct DebtDetailsView: View {
                 CreateAmountView { amount in
                     isAddModalShow = false;
                     withAnimation(.spring()) {
-                        viewModel.addNewAmount(person: person, amount: Int32(amount));
+                        let newAmount = CDAmount(context: viewContext);
+                        newAmount.amount = Int32(amount);
+                        newAmount.timestamp = Date();
+                        newAmount.person = person;
+                        person.addToAmounts(newAmount);
+                        try! viewContext.save();
                     }
                 }
             }
@@ -59,7 +64,7 @@ struct DebtDetailsView: View {
 
 struct DebtDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtDetailsView(
+        PersonDetailsView(
             person: {
                 let person = CDPerson()
                 person.name = "Slavik Nychkalo";

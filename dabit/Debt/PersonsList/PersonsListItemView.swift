@@ -8,8 +8,8 @@
 import SwiftUI
 
 
-struct DebtsListItemView: View {
-    let viewModel = DebtDetailsViewModel();
+struct PersonsListItemView: View {
+    @Environment(\.managedObjectContext) private var viewContext;
     @StateObject var person: CDPerson;
     @State var isDetailsShown = false;
     @State var isAddAmountShown = false;
@@ -104,14 +104,19 @@ struct DebtsListItemView: View {
                     })
             )
             .sheet(isPresented: $isDetailsShown, content: {
-                DebtDetailsView(person: person)
+                PersonDetailsView(person: person)
             })
             .sheet(isPresented: $isAddAmountShown, content: {
                 CreateAmountView { amount in
                     isAddAmountShown = false;
                     addedAmount = amount;
                     withAnimation(.spring()) {
-                        viewModel.addNewAmount(person: person, amount: Int32(amount));
+                        let newAmount = CDAmount(context: viewContext);
+                        newAmount.amount = Int32(amount);
+                        newAmount.timestamp = Date();
+                        newAmount.person = person;
+                        person.addToAmounts(newAmount);
+                        try! viewContext.save();
                         added = true;
                     }
                 }
@@ -124,7 +129,7 @@ struct DebtsListItemView: View {
 
 struct DebtItemView_Previews: PreviewProvider {
     static var previews: some View {
-        DebtsListItemView(
+        PersonsListItemView(
             person: {
                 let person = CDPerson()
                 person.name = "Test Debt";

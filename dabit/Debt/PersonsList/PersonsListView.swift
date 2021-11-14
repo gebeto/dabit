@@ -9,15 +9,14 @@ import SwiftUI
 import CoreData
 
 
-struct DebtsListView: View {
+struct PersonsListView: View {
     @State var isSettingsOpened = false;
     
     @Environment(\.managedObjectContext) private var viewContext;
     
     @FetchRequest(
         entity: CDPerson.entity(),
-        sortDescriptors: [],
-        predicate: nil
+        sortDescriptors: [NSSortDescriptor(keyPath: \CDPerson.timestamp, ascending: false)]
     ) var persons: FetchedResults<CDPerson>;
     
     let layout = [
@@ -33,7 +32,7 @@ struct DebtsListView: View {
                             if person.avatar == nil {
                                 Text("Loading...")
                             } else {
-                                DebtsListItemView(person: person)
+                                PersonsListItemView(person: person)
                             }
                         }
                     }
@@ -72,6 +71,7 @@ struct DebtsListView: View {
                     let person = CDPerson(context: viewContext);
                     person.name = "Slavik Nychkalo";
                     person.avatar = "placeholder3";
+                    person.timestamp = Date();
                     try! viewContext.save();
                 }
             }
