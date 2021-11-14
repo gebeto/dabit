@@ -82,27 +82,13 @@ struct PersonsListItemView: View {
             .onTapGesture(perform: {
                 isDetailsShown = true;
             })
-            .gesture(
-                DragGesture(minimumDistance: 1.0)
-                    .onChanged({ drag in
-                        let curr = drag.translation.width;
-                        let tension = curr * 0.7;
-                        let res = curr - tension
-                        if res <= 0 {
-                            offset = CGSize.zero;
-                        } else if res > 0 {
-                            offset = CGSize(width: res, height: 0);
-                        }
-                    })
-                    .onEnded({ drag in
-                        withAnimation(.spring()) {
-                            if drag.translation.width > 80 {
-                                isAddAmountShown = true;
-                            }
-                            offset = CGSize.zero
-                        }
-                    })
-            )
+            .swipeActions(edge: .leading, allowsFullSwipe: true, content: {
+                Button {
+                    isAddAmountShown = true;
+                } label: {
+                    Label("Add", systemImage: "plus")
+                }.tint(.green)
+            })
             .sheet(isPresented: $isDetailsShown, content: {
                 PersonDetailsView(person: person)
             })

@@ -28,18 +28,17 @@ struct PersonsListView: View {
             NavigationView {
                 List {
                     ForEach(persons, id: \.self) { person in
-                        VStack {
-                            if person.avatar == nil {
-                                Text("Loading...")
-                            } else {
-                                PersonsListItemView(person: person)
-                            }
-                        }
-                    }
-                    .onDelete { indexSet in
-                        indexSet.map{ persons[$0] }.forEach { person in
-                            viewContext.delete(person);
-                        };
+                        PersonsListItemView(person: person)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
+                                Button {
+                                    withAnimation {
+                                        viewContext.delete(person);
+                                        try! viewContext.save();
+                                    }
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }.tint(.red)
+                            })
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
