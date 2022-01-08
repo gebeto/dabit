@@ -41,7 +41,6 @@ struct CreateAmountForm: View {
             }
             
             Button(role: .none) {
-                print("Hello world")
                 if focus == .amount {
                     focus = .comment
                 } else if (focus == .comment) {
@@ -51,7 +50,7 @@ struct CreateAmountForm: View {
                     }
                 }
             } label: {
-                Label("Submit", systemImage: "checkmark.circle.fill")
+                Label("Add", systemImage: "checkmark.circle.fill")
             }
             .buttonStyle(.bordered)
         }
