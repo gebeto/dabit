@@ -15,9 +15,9 @@ struct PersonsListView: View {
     @Environment(\.managedObjectContext) private var viewContext;
     
     @FetchRequest(
-        entity: CDPerson.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \CDPerson.timestamp, ascending: false)]
-    ) var persons: FetchedResults<CDPerson>;
+        entity: Person.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Person.timestamp, ascending: false)]
+    ) var persons: FetchedResults<Person>;
     
     let layout = [
         GridItem(.flexible())
@@ -67,7 +67,7 @@ struct PersonsListView: View {
             }
             DButton(title: "Add user", systemIcon: "plus.circle.fill") {
                 withAnimation(.spring()) {
-                    let person = CDPerson(context: viewContext);
+                    let person = Person(context: viewContext);
                     person.name = "Slavik Nychkalo";
                     person.avatar = "placeholder3";
                     person.timestamp = Date();

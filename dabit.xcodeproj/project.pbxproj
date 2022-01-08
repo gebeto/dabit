@@ -12,7 +12,8 @@
 		AD422A0726DB9F8100BA3331 /* AmountsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0626DB9F8100BA3331 /* AmountsList.swift */; };
 		AD422A0926DBB6DA00BA3331 /* CreateAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */; };
 		AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD5AB6DF26DACF2A00B4B138 /* dabit.xcdatamodeld */; };
-		AD83980B26E0027200499D8C /* CDPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83980A26E0027200499D8C /* CDPerson.swift */; };
+		AD83980B26E0027200499D8C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83980A26E0027200499D8C /* Person.swift */; };
+		ADE185062741BB1000C266A8 /* CreateAmountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE185052741BB1000C266A8 /* CreateAmountForm.swift */; };
 		ADFE6ADC26DABB6400635280 /* ChumbaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFE6ADB26DABB6400635280 /* ChumbaView.swift */; };
 		ADFF2A6B26DA7F6F0034B989 /* dabitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */; };
 		ADFF2A6D26DA7F6F0034B989 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF2A6C26DA7F6F0034B989 /* ContentView.swift */; };
@@ -30,7 +31,8 @@
 		AD422A0626DB9F8100BA3331 /* AmountsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountsList.swift; sourceTree = "<group>"; };
 		AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAmountView.swift; sourceTree = "<group>"; };
 		AD5AB6E026DACF2A00B4B138 /* dabit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dabit.xcdatamodel; sourceTree = "<group>"; };
-		AD83980A26E0027200499D8C /* CDPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPerson.swift; sourceTree = "<group>"; };
+		AD83980A26E0027200499D8C /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		ADE185052741BB1000C266A8 /* CreateAmountForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAmountForm.swift; sourceTree = "<group>"; };
 		ADFE6ADB26DABB6400635280 /* ChumbaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChumbaView.swift; sourceTree = "<group>"; };
 		ADFF2A6726DA7F6F0034B989 /* dabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dabitApp.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				AD422A0426DB9CEF00BA3331 /* DButton.swift */,
 				AD422A0626DB9F8100BA3331 /* AmountsList.swift */,
 				AD422A0826DBB6DA00BA3331 /* CreateAmountView.swift */,
+				ADE185052741BB1000C266A8 /* CreateAmountForm.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -95,7 +98,7 @@
 		AD83980C26E002CA00499D8C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AD83980A26E0027200499D8C /* CDPerson.swift */,
+				AD83980A26E0027200499D8C /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -106,6 +109,15 @@
 				ADFF2A7D26DA9C240034B989 /* PersonDetailsView.swift */,
 			);
 			path = PersonDetails;
+			sourceTree = "<group>";
+		};
+		ADEE1EC4278A22940068E8F3 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				AD5AB6DA26DAC20C00B4B138 /* Settings */,
+				AD5AB6D826DAC18100B4B138 /* Debt */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		ADFF2A5E26DA7F6F0034B989 = {
@@ -127,11 +139,10 @@
 		ADFF2A6926DA7F6F0034B989 /* dabit */ = {
 			isa = PBXGroup;
 			children = (
+				ADEE1EC4278A22940068E8F3 /* Screens */,
 				AD83980C26E002CA00499D8C /* Models */,
 				ADFF2A7026DA7F700034B989 /* Preview Content */,
 				AD5AB6DB26DAC21C00B4B138 /* components */,
-				AD5AB6DA26DAC20C00B4B138 /* Settings */,
-				AD5AB6D826DAC18100B4B138 /* Debt */,
 				ADFF2A6E26DA7F700034B989 /* Assets.xcassets */,
 				ADFF2A6A26DA7F6F0034B989 /* dabitApp.swift */,
 				ADFF2A6C26DA7F6F0034B989 /* ContentView.swift */,
@@ -222,6 +233,7 @@
 				ADFF2A6D26DA7F6F0034B989 /* ContentView.swift in Sources */,
 				AD5AB6E126DACF2A00B4B138 /* dabit.xcdatamodeld in Sources */,
 				ADFF2A7E26DA9C240034B989 /* PersonDetailsView.swift in Sources */,
+				ADE185062741BB1000C266A8 /* CreateAmountForm.swift in Sources */,
 				ADFF2A7C26DA83440034B989 /* SettingsView.swift in Sources */,
 				AD422A0526DB9CEF00BA3331 /* DButton.swift in Sources */,
 				ADFF2A8226DAA4FB0034B989 /* PersonsListItemView.swift in Sources */,
@@ -231,7 +243,7 @@
 				AD422A0326DAD77300BA3331 /* Persistence.swift in Sources */,
 				ADFF2A6B26DA7F6F0034B989 /* dabitApp.swift in Sources */,
 				AD422A0926DBB6DA00BA3331 /* CreateAmountView.swift in Sources */,
-				AD83980B26E0027200499D8C /* CDPerson.swift in Sources */,
+				AD83980B26E0027200499D8C /* Person.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

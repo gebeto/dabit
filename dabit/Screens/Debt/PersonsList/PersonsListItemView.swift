@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PersonsListItemView: View {
     @Environment(\.managedObjectContext) private var viewContext;
-    @StateObject var person: CDPerson;
+    @StateObject var person: Person;
     @State var isDetailsShown = false;
     @State var isAddAmountShown = false;
     
@@ -97,7 +97,7 @@ struct PersonsListItemView: View {
                     isAddAmountShown = false;
                     addedAmount = amount;
                     withAnimation(.spring()) {
-                        let newAmount = CDAmount(context: viewContext);
+                        let newAmount = Amount(context: viewContext);
                         newAmount.amount = Int32(amount);
                         newAmount.timestamp = Date();
                         newAmount.person = person;
@@ -117,7 +117,7 @@ struct DebtItemView_Previews: PreviewProvider {
     static var previews: some View {
         PersonsListItemView(
             person: {
-                let person = CDPerson()
+                let person = Person()
                 person.name = "Test Debt";
                 person.avatar = "placeholder1";
                 return person;

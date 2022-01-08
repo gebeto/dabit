@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CDAmount" representedClassName="CDAmount" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Amount" representedClassName="Amount" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="done" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDPerson" inverseName="amounts" inverseEntity="CDPerson"/>
+        <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="amounts" inverseEntity="Person"/>
     </entity>
-    <entity name="CDPerson" representedClassName="CDPerson" syncable="YES" codeGenerationType="class">
+    <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
         <attribute name="avatar" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="amounts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDAmount" inverseName="person" inverseEntity="CDAmount"/>
+        <relationship name="amounts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Amount" inverseName="person" inverseEntity="Amount"/>
     </entity>
     <elements>
-        <element name="CDAmount" positionX="-45" positionY="-9" width="128" height="89"/>
-        <element name="CDPerson" positionX="-340.2634887695312" positionY="-61.638427734375" width="128" height="89"/>
+        <element name="Amount" positionX="-45" positionY="-9" width="128" height="89"/>
+        <element name="Person" positionX="-340.2634887695312" positionY="-61.638427734375" width="128" height="89"/>
     </elements>
 </model>

@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @State var isShown = false;
+    
     var body: some View {
         PersonsListView()
             .tabItem {

@@ -16,7 +16,7 @@ struct ClearStorageButton: View {
     @Environment(\.managedObjectContext) private var viewContext;
     
     func clearCoreData() {
-        let fetchRequest = CDPerson.fetchRequest()
+        let fetchRequest = Person.fetchRequest()
         fetchRequest.includesPropertyValues = false
         let context = viewContext;
         let objects = try! context.fetch(fetchRequest);

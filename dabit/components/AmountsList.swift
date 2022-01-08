@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AmountsList: View {
-    var person: CDPerson;
+    var person: Person;
     @Environment(\.managedObjectContext) private var viewContext;
-    @FetchRequest var items: FetchedResults<CDAmount>;
+    @FetchRequest var items: FetchedResults<Amount>;
 
-    init(person: CDPerson) {
+    init(person: Person) {
         self.person = person;
         self._items = FetchRequest(
-            entity: CDAmount.entity(),
+            entity: Amount.entity(),
             sortDescriptors: [
-                NSSortDescriptor(keyPath: \CDAmount.timestamp, ascending: false)
+                NSSortDescriptor(keyPath: \Amount.timestamp, ascending: false)
             ],
             predicate: NSPredicate(format: "person == %@", person)
         )

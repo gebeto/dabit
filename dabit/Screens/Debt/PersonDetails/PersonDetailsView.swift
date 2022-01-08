@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PersonDetailsView: View {
     @Environment(\.managedObjectContext) private var viewContext;
-    @StateObject var person: CDPerson;
+    @StateObject var person: Person;
     @State var isAddModalShow = false;
 
     var body: some View {
@@ -46,10 +46,10 @@ struct PersonDetailsView: View {
             }
             .navigationTitle(person.name!)
             .sheet(isPresented: $isAddModalShow) {
-                CreateAmountView { amount in
+                CreateAmountForm { amount in
                     isAddModalShow = false;
                     withAnimation(.spring()) {
-                        let newAmount = CDAmount(context: viewContext);
+                        let newAmount = Amount(context: viewContext);
                         newAmount.amount = Int32(amount);
                         newAmount.timestamp = Date();
                         newAmount.person = person;
@@ -59,18 +59,5 @@ struct PersonDetailsView: View {
                 }
             }
         }
-    }
-}
-
-struct DebtDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        PersonDetailsView(
-            person: {
-                let person = CDPerson()
-                person.name = "Slavik Nychkalo";
-                person.avatar = "placeholder1";
-                return person;
-            }()
-        )
     }
 }
