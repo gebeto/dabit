@@ -32,7 +32,7 @@ struct CreateAmountView: View {
         VStack {
             if opened {
                 TextField("$100", text: $amount)
-                    .keyboardType(.decimalPad)
+                    .keyboardType(.numberPad)
                     .font(Font.system(size: 36))
                     .multilineTextAlignment(.center)
                     .focused($focusedField, equals: .amount)
