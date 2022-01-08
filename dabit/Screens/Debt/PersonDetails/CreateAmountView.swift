@@ -10,7 +10,6 @@ import SwiftUI
 struct CreateAmountView: View {
     enum FocusField: Hashable {
         case amount
-        case test
         case none
     }
     

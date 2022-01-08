@@ -10,7 +10,6 @@ import SwiftUI
 struct CreatePersonView: View {
     enum FocusField: Hashable {
         case userName
-        case test
         case none
     }
     
@@ -21,7 +20,9 @@ struct CreatePersonView: View {
     var handleSubmit: (String) -> Void
     
     func submit() {
-        handleSubmit(userName)
+        if !userName.isEmpty {
+            handleSubmit(userName)
+        }
         userName = ""
         addUser.toggle()
     }
