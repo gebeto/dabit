@@ -11,16 +11,6 @@ import CoreData
 
 struct PersonsListView: View {
     @State var isSettingsOpened = false;
-    @State var userName = "";
-    @State var addUser = false;
-    
-    enum FocusField: Hashable {
-        case userName
-        case test
-        case none
-    }
-    
-    @FocusState private var focusedField: FocusField?
     
     @Environment(\.managedObjectContext) private var viewContext;
     
@@ -33,12 +23,10 @@ struct PersonsListView: View {
         GridItem(.flexible())
     ]
     
-    func submit() {
-        addUser.toggle()
+    func addUser(userName: String) {
         withAnimation(.spring()) {
             let person = Person(context: viewContext);
             person.name = userName;
-            userName = "";
             person.avatar = "placeholder3";
             person.timestamp = Date();
             try! viewContext.save();
@@ -87,27 +75,7 @@ struct PersonsListView: View {
                 }
 
             }
-            VStack {
-                if addUser {
-                    TextField("User name", text: $userName)
-                        .focused($focusedField, equals: .userName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onSubmit {
-                            submit()
-                        }
-                }
-                DButton(title: "Add user", systemIcon: "plus.circle.fill") {
-                    if addUser {
-                       submit()
-                    } else {
-                        addUser.toggle()
-                        focusedField = .userName
-                    }
-                }
-            }
-            .padding(.horizontal, 12)
-            .padding(.bottom, 12)
-            .padding(.top, 4)
+            CreatePersonView(handleSubmit: addUser)
         }
     }
 }

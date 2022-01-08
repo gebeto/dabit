@@ -37,17 +37,8 @@ struct PersonDetailsView: View {
                 AmountsList(person: person)
                 
                 Spacer()
-                
-                VStack() {
-                    DButton(title: "Add more", systemIcon: "plus.circle.fill", action: {
-                        isAddModalShow = true;
-                    })
-                }.padding()
-            }
-            .navigationTitle(person.name!)
-            .sheet(isPresented: $isAddModalShow) {
-                CreateAmountForm { amount in
-                    isAddModalShow = false;
+
+                CreateAmountView { amount in
                     withAnimation(.spring()) {
                         let newAmount = Amount(context: viewContext);
                         newAmount.amount = Int32(amount);
@@ -58,6 +49,7 @@ struct PersonDetailsView: View {
                     }
                 }
             }
+            .navigationTitle(person.name!)
         }
     }
 }

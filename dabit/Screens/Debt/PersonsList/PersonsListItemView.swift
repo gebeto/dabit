@@ -111,18 +111,3 @@ struct PersonsListItemView: View {
         }
     }
 }
-
-
-struct DebtItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        PersonsListItemView(
-            person: {
-                let person = Person()
-                person.name = "Test Debt";
-                person.avatar = "placeholder1";
-                return person;
-            }()
-        )
-        .previewLayout(.sizeThatFits)
-    }
-}
