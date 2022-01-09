@@ -34,48 +34,52 @@ struct PersonsListView: View {
     }
     
     var body: some View {
-        VStack {
-            NavigationView {
-                List {
-                    ForEach(persons, id: \.self) { person in
-                        PersonsListItemView(person: person)
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
-                                Button {
-                                    withAnimation {
-                                        viewContext.delete(person);
-                                        try! viewContext.save();
-                                    }
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }.tint(.red)
-                            })
-                    }
-                }
-                .listStyle(InsetGroupedListStyle())
-                .navigationTitle("Debts")
-                .toolbar(content: {
-                    ToolbarItem(placement: .navigationBarTrailing, content: {
-                        NavigationLink(
-                            destination: Text("Settings"),
-                            label: {
-                                Button(action: {
-                                    print("Settings");
-                                    isSettingsOpened = true;
-                                }, label: {
-                                    Image(systemName: "gear")
-                                        .foregroundColor(.accentColor)
+        NavigationView {
+            ZStack {
+                VStack {
+                    List {
+                        ForEach(persons, id: \.self) { person in
+                            PersonsListItemView(person: person)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
+                                    Button {
+                                        withAnimation {
+                                            viewContext.delete(person);
+                                            try! viewContext.save();
+                                        }
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }.tint(.red)
                                 })
-                            })
-                    })
-                })
-                .sheet(isPresented: $isSettingsOpened) {
-                    isSettingsOpened = false;
-                } content: {
-                    SettingsView()
+                        }
+                    }
+                    .listStyle(InsetGroupedListStyle())
                 }
-
+                VStack {
+                    Spacer()
+                    CreatePersonView(handleSubmit: addUser)
+                }
             }
-            CreatePersonView(handleSubmit: addUser)
+            .navigationTitle("Debts")
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing, content: {
+                    NavigationLink(
+                        destination: Text("Settings"),
+                        label: {
+                            Button(action: {
+                                print("Settings");
+                                isSettingsOpened = true;
+                            }, label: {
+                                Image(systemName: "gear")
+                                    .foregroundColor(.accentColor)
+                            })
+                        })
+                })
+            })
+            .sheet(isPresented: $isSettingsOpened) {
+                isSettingsOpened = false;
+            } content: {
+                SettingsView()
+            }
         }
     }
 }
