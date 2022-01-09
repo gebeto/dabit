@@ -58,6 +58,7 @@ struct CreatePersonView: View {
                     .background(Color(UIColor.systemBackground))
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.secondary.opacity(0.3), lineWidth: 4))
                     .cornerRadius(10)
+                    .submitLabel(.done)
                     .transition(
                         .move(edge: .bottom)
                             .combined(with: .opacity)
