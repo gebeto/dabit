@@ -21,33 +21,11 @@ struct PersonsListItemView: View {
     
     @State var offset: CGSize = CGSize.zero;
     
-    var degrees: Double {
-        if offset.animatableData.first > 45 {
-            return 90
-        }
-        return Double(offset.animatableData.first * 2)
-    }
-    
-    var scale: CGFloat {
-        return offset.animatableData.first > 0 ? offset.animatableData.first * 0.016 : 0
-    }
-    
-    var offsetLeft: CGFloat {
-        let half = offset.animatableData.first / 4;
-        return half - half / 2;
-    }
-    
     var body: some View {
         if person.avatar == nil {
             EmptyView()
         } else {
-            ZStack(alignment: Alignment(horizontal: .leading, vertical: .center), content: {
-                Image(systemName: "plus.circle.fill")
-                .font(.system(size: 24))
-                .foregroundColor(.green)
-                .scaleEffect(self.scale)
-                .rotationEffect(.degrees(Double(degrees)))
-                .offset(x: offsetLeft)
+            ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
             HStack {
                 Image(person.avatar!)
                     .resizable()
@@ -71,43 +49,43 @@ struct PersonsListItemView: View {
                     .rotationEffect(.degrees(added ? 10 : 0))
                     .padding(.trailing, 8)
             }
-            .offset(self.offset)
-            .onChange(of: added, perform: { value in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    withAnimation(.spring()) {
-                        added = false;
+                .offset(self.offset)
+                .onChange(of: added) { value in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        withAnimation(.spring()) {
+                            added = false;
+                        }
                     }
                 }
-            })
-            .onTapGesture(perform: {
-                isDetailsShown = true;
-            })
-            .swipeActions(edge: .leading, allowsFullSwipe: true, content: {
-                Button {
-                    isAddAmountShown = true;
-                } label: {
-                    Label("Add", systemImage: "plus")
-                }.tint(.green)
-            })
-            .sheet(isPresented: $isDetailsShown, content: {
-                PersonDetailsView(person: person)
-            })
-            .sheet(isPresented: $isAddAmountShown, content: {
-                CreateAmountView { amount in
-                    isAddAmountShown = false;
-                    addedAmount = amount;
-                    withAnimation(.spring()) {
-                        let newAmount = Amount(context: viewContext);
-                        newAmount.amount = Int32(amount);
-                        newAmount.timestamp = Date();
-                        newAmount.person = person;
-                        person.addToAmounts(newAmount);
-                        try! viewContext.save();
-                        added = true;
+                .onTapGesture {
+                    isDetailsShown = true;
+                }
+                .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                        Button {
+                            isAddAmountShown = true;
+                        } label: {
+                            Label("Add", systemImage: "plus")
+                        }.tint(.green)
+                }
+                .sheet(isPresented: $isDetailsShown) {
+                    PersonDetailsView(person: person)
+                }
+                .sheet(isPresented: $isAddAmountShown) {
+                    CreateAmountView { amount in
+                        isAddAmountShown = false;
+                        addedAmount = amount;
+                        withAnimation(.spring()) {
+                            let newAmount = Amount(context: viewContext);
+                            newAmount.amount = Int32(amount);
+                            newAmount.timestamp = Date();
+                            newAmount.person = person;
+                            person.addToAmounts(newAmount);
+                            try! viewContext.save();
+                            added = true;
+                        }
                     }
                 }
-            })
-            })
+            }
         }
     }
 }
